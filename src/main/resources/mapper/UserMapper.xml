@@ -3,7 +3,7 @@
 <mapper namespace="com.tpcs.demo.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.tpcs.demo.model.User">
+    <resultMap id="BaseResultMap" type="com.tpcs.demo.entity.User">
         <result column="id" property="id" />
         <result column="name" property="name" />
         <result column="age" property="age" />

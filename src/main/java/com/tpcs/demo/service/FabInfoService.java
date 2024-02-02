@@ -1,19 +1,20 @@
 package com.tpcs.demo.service;
 
+import com.tpcs.demo.entity.FabInfo;
+
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tpcs.demo.entity.User;
 
 /**
  * <p>
- *  服务类
+ * 厂房信息表 服务类
  * </p>
  *
- * @author lky
- * @since 2023-12-14
+ * @author lijt
+ * @since 2024-01-23
  */
 @Service
-public interface UserService extends IService<User> {
+public interface FabInfoService extends IService<FabInfo> {
 
 }

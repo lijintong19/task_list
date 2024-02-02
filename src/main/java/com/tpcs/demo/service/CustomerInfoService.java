@@ -3,17 +3,17 @@ package com.tpcs.demo.service;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tpcs.demo.entity.User;
+import com.tpcs.demo.entity.CustomerInfo;
 
 /**
  * <p>
- *  服务类
+ * 客户信息表 服务类
  * </p>
  *
- * @author lky
- * @since 2023-12-14
+ * @author lijt
+ * @since 2024-01-22
  */
 @Service
-public interface UserService extends IService<User> {
+public interface CustomerInfoService extends IService<CustomerInfo> {
 
 }

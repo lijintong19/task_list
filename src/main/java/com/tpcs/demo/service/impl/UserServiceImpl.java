@@ -1,6 +1,6 @@
 package com.tpcs.demo.service.impl;
 
-import com.tpcs.demo.model.User;
+import com.tpcs.demo.entity.User;
 import com.tpcs.demo.mapper.UserMapper;
 import com.tpcs.demo.service.UserService;
 

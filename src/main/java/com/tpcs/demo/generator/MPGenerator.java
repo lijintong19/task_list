@@ -89,7 +89,7 @@ public class MPGenerator {
                 .setMapper("mapper")
                 .setService("service")
                 .setController("controller")
-                .setEntity("model");
+                .setEntity("entity");
         mpg.setPackageInfo(pc);
 
         // 4.自定义配置

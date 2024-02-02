@@ -1,4 +1,4 @@
-package com.tpcs.demo.model;
+package com.tpcs.demo.entity;
 
 import java.io.Serializable;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class User implements Serializable {
 
     private Integer id;
     private String name;
+    private String password;
     private Integer age;
-
 
 }

@@ -1,10 +1,9 @@
 package com.tpcs.demo.mapper;
 
-import com.tpcs.demo.model.User;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tpcs.demo.entity.User;
 
 /**
  * <p>

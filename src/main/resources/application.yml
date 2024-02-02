@@ -16,3 +16,10 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.tpcs.demo.demo.model
+jwt:
+  route:
+    authentication:
+      path: /admin/login
+  header: Authorization
+  expiration: 604800
+  secret: zhengkai.blog.csdn.net
