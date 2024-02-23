@@ -8,6 +8,7 @@
         <result column="customer_name" property="customerName" />
         <result column="remark_picture_path" property="remarkPicturePath" />
         <result column="fab_name" property="fabName" />
+        <result column="sequence" property="sequence" />
         <result column="list_desc" property="listDesc" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -15,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,customer_name,remark_picture_path,fab_name,list_desc, create_time, update_time
+        id,customer_name,remark_picture_path,sequence,fab_name,list_desc, create_time, update_time
     </sql>
 
     <select id="selectAll" resultMap="BaseResultMap">

@@ -1,25 +1,24 @@
 package com.tpcs.demo.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 订单表
+ * 订单记录汇总表
  * </p>
  *
  * @author lijt
- * @since 2024-02-01
+ * @since 2024-02-21
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ListDetailOperateInfo implements Serializable {
+public class ListTotalOperateInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +29,7 @@ public class ListDetailOperateInfo implements Serializable {
     private Integer id;
 
     /**
-     * 操作员
+     * 用户名称
      */
     private String operatorName;
 
@@ -40,44 +39,19 @@ public class ListDetailOperateInfo implements Serializable {
     private String customerName;
 
     /**
-     * 厂房名称
-     */
-    private String fabName;
-
-    /**
-     * 技术节点
-     */
-    private String technology;
-
-    /**
      * 订单编号
      */
     private String orderNumber;
 
     /**
-     * 层次编号
+     * 总体消耗时间(分钟)
      */
-    private String layerNumber;
-
-    /**
-     * device编号
-     */
-    private String deviceNumber;
+    private String spentTime;
 
     /**
      * 任务状态
      */
     private String status;
-
-    /**
-     * 具体步骤
-     */
-    private String step;
-
-    /**
-     * 花费时间
-     */
-    private String spentTime;
 
     /**
      * 创建时间

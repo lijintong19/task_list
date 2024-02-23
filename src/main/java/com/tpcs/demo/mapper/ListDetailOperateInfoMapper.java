@@ -2,6 +2,8 @@ package com.tpcs.demo.mapper;
 
 import com.tpcs.demo.entity.ListDetailOperateInfo;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -16,5 +18,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 @Mapper
 public interface ListDetailOperateInfoMapper extends BaseMapper<ListDetailOperateInfo> {
+
+    /**
+     * 根据用户姓名查找具体操作信息
+     * 
+     * @param customerName
+     * @return
+     */
+    List<ListDetailOperateInfo> selectDetailInfoByName(String operatorName);
 
 }

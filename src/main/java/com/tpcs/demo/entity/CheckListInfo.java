@@ -35,6 +35,11 @@ public class CheckListInfo implements Serializable {
     private String remarkPicturePath;
 
     /**
+     * 步骤顺序
+     */
+    private String sequence;
+
+    /**
      * 厂房名称
      */
     private String fabName;
