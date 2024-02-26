@@ -2,6 +2,7 @@ package com.tpcs.demo.service;
 
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tpcs.demo.entity.CustomerInfo;
 
@@ -15,5 +16,14 @@ import com.tpcs.demo.entity.CustomerInfo;
  */
 @Service
 public interface CustomerInfoService extends IService<CustomerInfo> {
+
+    /**
+     * 分页查询方法
+     * 
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public Page<CustomerInfo> selectPage(Integer pageNum, Integer pageSize);
 
 }

@@ -18,5 +18,10 @@ import com.tpcs.demo.entity.CustomerInfo;
 @Mapper
 public interface CustomerInfoMapper extends BaseMapper<CustomerInfo> {
 
+    /**
+     * 查询全部
+     * 
+     * @return
+     */
     List<CustomerInfo> selectAll();
 }
