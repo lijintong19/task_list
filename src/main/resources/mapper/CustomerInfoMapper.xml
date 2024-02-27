@@ -22,4 +22,10 @@
         from customer_info
     </select>
 
+    <update id="updateCustomerName">
+        update customer_info
+        set customer_name = #{customerName},update_time = NOW()
+        where id = #{id}
+    </update>
+
 </mapper>

@@ -115,6 +115,12 @@ public class CustomerInfoController {
         return new JwtResponse(00, "Success", "");
     }
 
+    /**
+     * 新增用户方法
+     * 
+     * @param customerName
+     * @return
+     */
     @PostMapping("/add")
     public JwtResponse addCustomer(@RequestBody String customerName) {
         log.info("客户名称为:" + customerName);
@@ -125,6 +131,24 @@ public class CustomerInfoController {
         customerInfo.setCreateTime(new Date());
         int insert = customerInfoMapper.insert(customerInfo);
         log.info("添加客户信息结果:" + insert);
+        return new JwtResponse(0, "Success", "");
+    }
+
+    /**
+     * 编辑用户方法
+     * 
+     * @param request
+     * @return
+     */
+    @PostMapping("/edit")
+    public JwtResponse editCustomer(@RequestBody String request) {
+        log.info("编辑请求参数:" + request);
+        JSONObject requestJson = JSONObject.parseObject(request);
+        JSONObject requestInfo = requestJson.getJSONObject("params");
+        String id = requestInfo.getString("id");
+        String customerName = requestInfo.getString("customerName");
+        int updateById = customerInfoMapper.updateCustomerName(Integer.parseInt(id),customerName);
+        log.info("编辑客户信息结果:" + updateById);
         return new JwtResponse(0, "Success", "");
     }
 }

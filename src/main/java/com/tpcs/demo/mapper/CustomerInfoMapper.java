@@ -24,4 +24,12 @@ public interface CustomerInfoMapper extends BaseMapper<CustomerInfo> {
      * @return
      */
     List<CustomerInfo> selectAll();
+
+    /**
+     * 根据id更新客户记录
+     * 
+     * @param id
+     * @return
+     */
+    int updateCustomerName(Integer id,String customerName);
 }
