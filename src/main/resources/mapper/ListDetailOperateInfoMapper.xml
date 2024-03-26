@@ -35,4 +35,38 @@
         order by create_time desc limit 5 
     </select>
 
+    <select id="selectInfoByConditions" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from list_detail_operate_info
+        <where>
+            <if test = "operatorName != null">
+                operator_name = #{operatorName}
+            </if>
+            <if test = "customerName != null">
+                AND customer_name = #{customerName}
+            </if>
+            <if test = "fabName != null">
+                AND fab_name = #{fabName}
+            </if>
+            <if test = "orderNumber != null">
+                AND order_number = #{orderNumber}
+            </if>
+            <if test = "step != null">
+                AND step = #{step}
+            </if>
+        </where>
+    </select>
+
+    <update id = "updateInfoByConditions" parameterType="map">
+        update list_detail_operate_info
+        <set>
+            <if test="status != null">status = #{status},</if>
+            update_time = NOW()
+        </set>
+        where operator_name = #{operatorName} 
+        and customer_name = #{customerName} 
+        and fab_name = #{fabName}
+        and order_number = #{orderNumber}
+        and step = #{step};
+    </update>
+
 </mapper>

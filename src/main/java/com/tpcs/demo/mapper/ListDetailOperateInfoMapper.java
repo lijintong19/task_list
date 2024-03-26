@@ -3,6 +3,7 @@ package com.tpcs.demo.mapper;
 import com.tpcs.demo.entity.ListDetailOperateInfo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,5 +27,17 @@ public interface ListDetailOperateInfoMapper extends BaseMapper<ListDetailOperat
      * @return
      */
     List<ListDetailOperateInfo> selectDetailInfoByName(String operatorName);
+
+    /**
+     * 根据一定条件更新
+     * 
+     * @return
+     */
+    int updateInfoByConditions(Map<String, Object> map);
+
+    /**
+     * 根据一定条件查找
+     */
+    ListDetailOperateInfo selectInfoByConditions(Map<String, Object> map);
 
 }

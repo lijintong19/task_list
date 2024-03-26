@@ -3,6 +3,7 @@ package com.tpcs.demo.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -94,10 +95,61 @@ public class CheckListInfoController {
         listDetailOperateInfo.setOrderNumber(operatorInfo.getString("orderNumber"));
         listDetailOperateInfo.setTechnology(operatorInfo.getString("technology"));
         listDetailOperateInfo.setStep(operatorInfo.getString("step"));
-        listDetailOperateInfo.setStatus(operatorInfo.getString("status").equals("true") ? "完成" : "未完成");
+        listDetailOperateInfo.setStatus(operatorInfo.getString("status").equals("true") ? "finished" : "unfinished");
         listDetailOperateInfo.setCreateTime(new Date());
         listDetailOperateInfoMapper.insert(listDetailOperateInfo);
         return new JwtResponse(00, "Success", "");
+    }
+
+    /**
+     * 更新详情表中的步骤状态
+     */
+    @PostMapping("/updateInfos")
+    public JwtResponse updateListOperateInfo(@RequestBody String requestBody) {
+        log.info("修改操作信息为:" + requestBody);
+        Map<String, Object> map = new HashMap<>();
+        JSONObject detailInfo = JSONObject.parseObject(requestBody);
+        JSONObject operatorInfo = detailInfo.getJSONObject("params");
+        // 查询参数
+        map.put("status", operatorInfo.getString("status").equals("true") ? "finished" : "unfinished");
+        map.put("customerName", operatorInfo.getString("customerName"));
+        map.put("operatorName", operatorInfo.getString("operatorName"));
+        map.put("fabName", operatorInfo.getString("fabName"));
+        map.put("step", operatorInfo.getString("step"));
+        map.put("orderNumber", operatorInfo.getString("orderNumber"));
+        int result = listDetailOperateInfoMapper.updateInfoByConditions(map);
+        log.info("更新操作表结果为:" + result);
+        if (result != 0) {
+            return new JwtResponse(00, "Success", "");
+        } else {
+            return new JwtResponse(01, "Failed", "");
+        }
+    }
+
+    /**
+     * 根据指定条件查找方法
+     * 
+     * @param requestBody
+     * @return
+     */
+    @PostMapping("/selectInfos")
+    public JwtResponse selectDetailOperationInfo(@RequestBody String requestBody) {
+        log.info("查找特定条件操作信息的参数:" + requestBody);
+        JSONObject totalInfo = JSONObject.parseObject(requestBody);
+        JSONObject operatorInfo = totalInfo.getJSONObject("params");
+        Map<String, Object> map = new HashMap<>();
+        // 查询条件
+        map.put("customerName", operatorInfo.getString("customerName"));
+        map.put("operatorName", operatorInfo.getString("operatorName"));
+        map.put("fabName", operatorInfo.getString("fabName"));
+        map.put("step", operatorInfo.getString("step"));
+        map.put("orderNumber", operatorInfo.getString("orderNumber"));
+        ListDetailOperateInfo selectInfoByConditions = listDetailOperateInfoMapper.selectInfoByConditions(map);
+        if (null != selectInfoByConditions) {
+            return new JwtResponse(00, "Success", "");
+        } else {
+            return new JwtResponse(01, "Failed", "");
+        }
     }
 
     /**
@@ -119,6 +171,19 @@ public class CheckListInfoController {
         listTotalInfo.setStatus(operatorInfo.getString("status").equals("true") ? "完成" : "未完成");
         listTotalInfo.setCreateTime(new Date());
         listTotalOperateInfoMapper.insert(listTotalInfo);
+        return new JwtResponse(00, "Success", "");
+    }
+
+    /**
+     * 更新具体操作信息
+     * 
+     * @param requestBody
+     * @return
+     */
+    @PostMapping("/updateTotalInfos")
+    public JwtResponse updateTotalOperateInfo(@RequestBody String requestBody) {
+        log.info("更新具体操作信息表请求参数:" + requestBody);
+        
         return new JwtResponse(00, "Success", "");
     }
 
@@ -149,5 +214,9 @@ public class CheckListInfoController {
         List<ListTotalOperateInfo> totalInfoByName = listTotalOperateInfoMapper.getTotalInfoByName(operatorName);
         log.info("该用户" + operatorName + "的订单信息为:" + totalInfoByName);
         return totalInfoByName;
+    }
+
+    public void getImage() {
+
     }
 }
