@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-class DemoApplicationTests {
+class IssueApplicationTests {
 
 	//@Autowired
 	//CustomerInfoMapper customerInfoMapper;

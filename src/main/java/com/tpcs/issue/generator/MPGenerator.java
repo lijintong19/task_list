@@ -1,4 +1,4 @@
-package com.tpcs.demo.generator;
+package com.tpcs.issue.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;

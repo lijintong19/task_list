@@ -1,0 +1,19 @@
+server:
+    port: 8082
+    profile: pro
+spring:
+  application:
+    name: checklistdemo
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/tpcs_data_base?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: static/**
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.tpcs.issue.demo.model
