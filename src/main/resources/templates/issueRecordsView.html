@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Records List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Issue Records List</h1>
+    </div>
+    <div class="button-container">
+        <a th:href="@{/api/add}">
+            <button>Add</button>
+        </a>
+        <a th:href="@{/api/index}">
+            <button>index</button>
+        </a>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Issue Description</th>
+            <th>Issue Status</th>
+            <th>Issue Date</th>
+            <th>Report By</th>
+            <th>Create Time</th>
+            <th>Update Time</th>
+            <th>Comment</th>
+        </tr>
+        <tr th:each="issueRecord : ${issueRecords}">
+            <td th:text="${issueRecord.id}"></td>
+            <td th:text="${issueRecord.issueDescription}"></td>
+            <td th:text="${issueRecord.issueStatus}"></td>
+            <td th:text="${#dates.format(issueRecord.issueDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td th:text="${issueRecord.reportBy}"></td>
+            <td th:text="${#dates.format(issueRecord.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td th:text="${#dates.format(issueRecord.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td th:text="${issueRecord.comment}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

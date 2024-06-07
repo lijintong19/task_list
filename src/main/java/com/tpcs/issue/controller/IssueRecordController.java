@@ -3,28 +3,41 @@ package com.tpcs.issue.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.tpcs.issue.entity.IssueRecord;
-import com.tpcs.issue.mapper.IssueRecordMapper;
+import com.tpcs.issue.service.IssueRecordService;
 
-@RestController
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * @author lijt
+ * @date 2024/06/07
+ */
+@Controller
 @RequestMapping("/api")
+@Slf4j
 public class IssueRecordController {
 
     @Autowired
-    IssueRecordMapper issueRecordMapper;
-    
-    @GetMapping("/hello")
-    public String getHello() {
-        return "Hello, World!";
+    IssueRecordService issueRecordService;
+
+    @RequestMapping("/getIssueRecords")
+    public String getIssueRecords(Model model) {
+        List<IssueRecord> issueRecords = issueRecordService.getAll();
+        log.info("issueRecords" + issueRecords);
+        model.addAttribute("issueRecords", issueRecords);
+        return "issueRecordsView";
     }
 
-    @GetMapping("/getInfo")
-    public List<IssueRecord> getIssueRecords() {
-        List<IssueRecord> issueRecords = issueRecordMapper.selectAll();
-        return issueRecords;
+    @RequestMapping("/index")
+    public String getIndex(){
+        return "index";
+    }
+
+    @RequestMapping("/add")
+    public String addIssueRecord(){
+        return "add";
     }
 }
