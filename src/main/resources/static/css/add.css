@@ -1,0 +1,59 @@
+/* 通用样式 */  
+body, html {  
+    margin: 0;  
+    padding: 0;  
+    font-family: Arial, sans-serif; /* 使用无衬线字体，增加现代感 */  
+    background-color: #f0f8ff; /* 浅蓝色背景 */  
+    color: #333; /* 深灰色文字 */  
+}  
+  
+h1 {  
+    color: #0056b3; /* 深蓝色标题 */  
+    text-align: center;  
+    padding: 20px 0; /* 上下内边距 */  
+}  
+  
+textarea.form-control {  
+    height: 100px; /* 文本域的高度 */  
+    width: 100%;
+}
+  
+/* 表单样式 */  
+form {  
+    width: 300px; /* 表单宽度 */  
+    margin: 20px auto; /* 自动居中并添加外边距 */  
+    padding: 20px; /* 内边距 */  
+    background-color: #ffffff; /* 白色背景 */  
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 轻微阴影效果 */  
+    border-radius: 8px; /* 圆角边框 */  
+}  
+  
+label {  
+    display: block; /* 每个标签独占一行 */  
+    margin-bottom: 5px; /* 标签与输入框的间距 */  
+    color: #0056b3; /* 深蓝色标签 */  
+}  
+  
+input[type="text"], input[type="hidden"] {  
+    width: 100%; /* 输入框宽度填满表单 */  
+    padding: 8px; /* 内边距 */  
+    margin-bottom: 15px; /* 输入框之间的间距 */  
+    border: 1px solid #ccc; /* 灰色边框 */  
+    border-radius: 4px; /* 圆角边框 */  
+    box-sizing: border-box; /* 边框包含在宽度内 */  
+}  
+  
+button[type="submit"] {  
+    background-color: #007bff; /* 蓝色按钮背景 */  
+    color: white; /* 白色文字 */  
+    border: none; /* 无边框 */  
+    padding: 10px 20px; /* 内边距 */  
+    border-radius: 4px; /* 圆角边框 */  
+    cursor: pointer; /* 鼠标悬停时显示手指形状 */  
+    width: 100%; /* 宽度填满表单 */  
+    font-size: 16px; /* 字体大小 */  
+}  
+  
+button[type="submit"]:hover {  
+    background-color: #0056b3; /* 鼠标悬停时颜色变深 */  
+}

@@ -2,9 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>add page</title>
+    <title>Add Issue</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add.css}" />
 </head>
 <body>
-    <h1>add</h1>
+    <h1>Add Issue</h1>
+    <form th:action="@{/api/addIssue}" method="post" th:object="${issueRecords}">
+        <label for="issueDescription">Issue Description</label>
+        <textarea id="issueDescription" class="form-control" th:field="*{issueDescription}" required></textarea><br/>
+        <label for="issueStatus">Issue Status</label>
+        <select id="issueStatus" class="form-control" th:field="*{issueStatus}" required>
+            <option value="On going">On going</option>
+            <option value="completed">completed</option>
+            <option value="empty"></option>
+        </select><br/>
+        <label for="issueDate">Issue Date</label>
+        <input type="text" id="issueDate" th:field="*{issueDate}" required /><br/>
+        <label for="reporter">Reporter</label>
+        <input type="text" id="reporter" th:field="*{reportBy}" required /><br/>
+        <button type="submit">Add</button>
+    </form>
 </body>
 </html>

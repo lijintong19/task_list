@@ -14,6 +14,17 @@ spring:
       enabled: true
       additional-paths: src/main/java
       exclude: static/**
+  mail:
+    host: 10.0.81.10
+    port: 25
+    username: lijt@photomask.com
+    password: 123! # 请替换为实际的密码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.tpcs.issue.demo.model

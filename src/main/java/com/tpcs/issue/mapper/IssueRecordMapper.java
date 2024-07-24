@@ -5,10 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tpcs.issue.entity.IssueRecord;
+import com.tpcs.issue.entity.IssueRecordTable;
 
 @Mapper
-public interface IssueRecordMapper extends BaseMapper<IssueRecord> {
+public interface IssueRecordMapper extends BaseMapper<IssueRecordTable> {
 
-    List<IssueRecord> selectAll();
+    List<IssueRecordTable> selectAll();
+
+    List<IssueRecordTable> selectByStatus();
 }

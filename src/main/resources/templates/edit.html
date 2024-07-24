@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Issue Record</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/edit.css}"/>
+</head>
+<body>
+    <h1>Edit Issue Record</h1>
+    <form th:action="@{/api/update}" method="post" th:object="${issueRecords}">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="issueDescription">Issue Description:</label>
+        <input type="text" th:field="*{issueDescription}" id="issueDescription"/><br/>
+        <label for="issueDate">Issue Date:</label>
+        <input type="text" th:field="*{issueDate}" id="issueDate"/><br/>
+        <label for="reportBy">Report By:</label>
+        <input type="text" th:field="*{reportBy}" id="reportBy"/><br/>
+        <label for="issueStatus">Issue Status:</label>
+        <input type="text" th:field="*{issueStatus}" id="issueStatus"/><br/>
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
