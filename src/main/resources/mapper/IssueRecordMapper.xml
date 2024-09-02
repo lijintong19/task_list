@@ -11,6 +11,7 @@
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="comment" column="comment"/>
+        <result property="uploadFilesPath" column="upload_files_path"/>
     </resultMap>
 
     <!-- 定义一个查询操作 -->

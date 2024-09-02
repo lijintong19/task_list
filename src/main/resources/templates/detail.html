@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Details</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-6.6.0-web/css/all.min.css}" />
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">Issue Details</h1>
+            <div class="box">
+                <!-- Issue Details -->
+                <div class="content">
+                    <h2 class="subtitle">Issue Description</h2>
+                    <textarea class="textarea" th:text="${issueRecord.issueDescription}" readonly></textarea>
+
+                    <h2 class="subtitle">Issue Date</h2>
+                    <input class="input" type="text" style="width: 105px;" th:value="${issueRecord.issueDate}" readonly />
+
+                    <h2 class="subtitle">Issue Status</h2>
+                    <input class="input" type="text" style="width: 95px;" th:value="${issueRecord.issueStatus}" readonly />
+
+                    <h2 class="subtitle">Reporter</h2>
+                    <input class="input" type="text" style="width: 75px;" th:value="${issueRecord.reportBy}" readonly />
+                </div>
+
+                <!-- Display Files -->
+                <div class="content">
+                    <h2 class="subtitle">Related Files</h2>
+                    <div class="file-list">
+                        <!-- Check if there are files -->
+                        <div th:if="${issueRecord.uploadFilesPath == null or issueRecord.uploadFilesPath.isEmpty()}">
+                            <p>No files uploaded.</p>
+                        </div>
+                        <div
+                            th:unless="${issueRecord.uploadFilesPath == null or issueRecord.uploadFilesPath.isEmpty()}">
+                            <ul>
+                                <li th:each="file : ${issueRecord.uploadFilesPath.split(',')}" class="file-item">
+                                    <!-- Extract just the file name for display -->
+                                    <a th:href="@{'/home/lijt/app/files/' + ${file}}"
+                                        th:text="${file.substring(file.lastIndexOf('/') + 1)}">File link</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Actions -->
+                <div class="field is-grouped">
+                    <p class="control">
+                        <a class="button is-link" th:href="@{/api/edit(id=${issueRecord.id})}">Edit</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

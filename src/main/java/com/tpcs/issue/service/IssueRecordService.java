@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.tpcs.issue.entity.IssueRecordTable;
 import com.tpcs.issue.mapper.IssueRecordMapper;
 
@@ -73,6 +74,30 @@ public class IssueRecordService {
      * @return
      */
     public List<IssueRecordTable> getListByStatus() {
-       return issueRecordMapper.selectByStatus();
+        return issueRecordMapper.selectByStatus();
+    }
+
+    /**
+     * search issue records
+     * 
+     * @param reporter
+     * @param date
+     * @param status
+     * @return
+     */
+    public List<IssueRecordTable> searchIssueRecords(String reporter, String date, String status) {
+        QueryWrapper<IssueRecordTable> queryWrapper = new QueryWrapper<>();
+
+        if (reporter != null && !reporter.isEmpty()) {
+            queryWrapper.eq("report_by", reporter);
+        }
+        if (date != null && !date.isEmpty()) {
+            queryWrapper.eq("issue_date", date);
+        }
+        if (status != null && !status.isEmpty()) {
+            queryWrapper.eq("issue_status", status);
+        }
+
+        return issueRecordMapper.selectList(queryWrapper);
     }
 }
