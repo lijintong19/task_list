@@ -22,7 +22,7 @@ public class ScheduledTasks {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    // @Scheduled(cron = "0 */4 * * * ?")
+    @Scheduled(cron = "0 0 */4 * * ?")
     public void sendEmail() {
         List<IssueRecordTable> data = issueRecordService.getListByStatus();
         StringBuilder emailBody = new StringBuilder();
@@ -33,7 +33,7 @@ public class ScheduledTasks {
             emailBody.append("On going issues:\n");
             for (IssueRecordTable record : data) {
                 if ("On going".equals(record.getIssueStatus())) {
-                    emailBody.append("-ID: ").append(record.getId()).append("-issueDescription: ")
+                    emailBody.append("-ID: ").append(record.getId()).append(" -issueDescription: ")
                             .append(record.getIssueDescription()).append("\n");
                 } else {
                     emailBody.append("There is no on going issue.\n");
@@ -42,11 +42,12 @@ public class ScheduledTasks {
         } else {
             emailBody.append("There is no issue record for today.\n");
         }
-        
+
         emailBody.append("\nBest regards,\nAuto");
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@tpcs.com");
-        message.setTo("mission_list_notice@shux07.photomask.com");
+        String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com"};
+        message.setFrom("reportPlatform@tpcs.com");
+        message.setTo(to);
         message.setSubject("Daily Issue Report");
         message.setText(emailBody.toString());
         javaMailSender.send(message);

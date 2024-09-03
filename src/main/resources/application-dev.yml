@@ -22,7 +22,7 @@ spring:
     host: 10.0.81.10
     port: 25
     username: lijt@photomask.com
-    password: 123! # 请替换为实际的密码
+    password: ljtSCQ012!
     properties:
       mail:
         smtp:
