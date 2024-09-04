@@ -13,6 +13,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +48,7 @@ public class IssueRecordController {
     @Value("${file.path}")
     private String uploadPath;
 
-    @RequestMapping("/getIssueRecords")
+    @RequestMapping("/getTasks")
     public String getIssueRecords(Model model) {
         List<IssueRecordTable> issueRecords = issueRecordService.getAll();
         log.info("issueRecords" + issueRecords);
@@ -84,18 +89,17 @@ public class IssueRecordController {
         log.info("提交数据对象: {}", issueRecord);
 
         List<String> uploadFilesPath = new ArrayList<>();
+        Path rootDirPath = Paths.get(uploadPath);
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String datePath = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                Path dirPath = Paths.get(uploadPath, datePath);
+                Path dirPath = rootDirPath.resolve(fileName);
                 try {
                     if (!Files.exists(dirPath)) {
                         Files.createDirectories(dirPath);
                     }
-                    Path filePath = dirPath.resolve(fileName);
-                    Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-                    uploadFilesPath.add(filePath.toString().replace("\\", "/"));
+                    Files.copy(file.getInputStream(), dirPath, StandardCopyOption.REPLACE_EXISTING);
+                    uploadFilesPath.add(dirPath.toString().replace("\\", "/"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     return "error";
@@ -106,7 +110,7 @@ public class IssueRecordController {
         issueRecord.setCreateTime(new Date());
         issueRecordService.insert(issueRecord);
 
-        return "redirect:/api/getIssueRecords";
+        return "redirect:/api/getTasks";
     }
 
     /**
@@ -120,7 +124,7 @@ public class IssueRecordController {
     public String deleteIssueRecord(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
         issueRecordService.delete(id);
         redirectAttributes.addFlashAttribute("message", "删除成功");
-        return "redirect:/api/getIssueRecords";
+        return "redirect:/api/getTasks";
     }
 
     /**
@@ -151,7 +155,7 @@ public class IssueRecordController {
         int update = issueRecordService.update(issueRecord);
         System.out.println("update result:" + update);
         redirectAttributes.addFlashAttribute("message", "Issue record updated successfully!");
-        return "redirect:/api/getIssueRecords";
+        return "redirect:/api/getTasks";
     }
 
     /**
@@ -182,6 +186,27 @@ public class IssueRecordController {
         log.info("searchIssueRecords" + searchIssueRecords);
         model.addAttribute("issueRecords", searchIssueRecords);
         return "records";
+    }
+
+    @GetMapping("/download")
+    public ResponseEntity<Resource> downloadFile(@RequestParam("fileName") String fileName) {
+        try {
+            // 拼接完整的文件路径
+            File file = new File(uploadPath, fileName);
+            if (!file.exists()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            Resource resource = new FileSystemResource(file);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"");
+
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(resource);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

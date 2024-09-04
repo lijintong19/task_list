@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Issue Records List</title>
+    <title>Task List</title>
     <!--<link rel="stylesheet" type="text/css" th:href="@{/css/issueRecordsView.css}" />-->
     <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
     <script type="text/javascript">
@@ -17,13 +17,13 @@
 
 <body>
     <div class="container">
-        <h1 class="title has-text-centered">Issue Records List</h1>
+        <h1 class="title has-text-centered">Task List</h1>
 
         <!-- Search Form -->
         <form th:action="@{/api/search}" method="get" class="is-pulled-right">
             <div class="field has-addons">
                 <div class="control">
-                    <input class="input" type="text" name="reporter" placeholder="Reporter">
+                    <input class="input" type="text" name="reporter" placeholder="Owner">
                 </div>
                 <div class="control">
                     <input class="input" type="date" name="date" placeholder="Date">
@@ -53,12 +53,12 @@
             <thread>
                 <tr>
                     <th>Id</th>
-                    <th>Issue Description</th>
-                    <th>Issue Date</th>
-                    <th>Report By</th>
-                    <th>Issue Status</th>
+                    <th>Task Description</th>
+                    <th>Date</th>
+                    <th>Owner</th>
+                    <th>Status</th>
                     <th>Operation</th>
-                </tr> is-primary
+                </tr>
                 <tr th:each="issueRecord : ${issueRecords}">
                     <td th:text="${issueRecord.id}"></td>
                     <td th:text="${issueRecord.issueDescription}"></td>

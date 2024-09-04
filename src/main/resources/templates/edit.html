@@ -20,26 +20,26 @@
     <section class="section">
         <div class="container container-custom">
             <div class="box">
-                <h1 class="title has-text-centered">Edit Issue Record</h1>
+                <h1 class="title has-text-centered">Edit Task Record</h1>
                 <form th:action="@{/api/update}" method="post" th:object="${issueRecords}">
                     <input type="hidden" th:field="*{id}" />
 
                     <div class="field">
-                        <label class="label" for="issueDescription">Issue Description:</label>
+                        <label class="label" for="issueDescription">Task Description:</label>
                         <div class="control">
                             <textarea class="textarea" th:field="*{issueDescription}" id="issueDescription"></textarea>
                         </div>
                     </div>
 
                     <div class="field">
-                        <label class="label" for="issueDate">Issue Date:</label>
+                        <label class="label" for="issueDate">Date:</label>
                         <div class="control">
                             <input class="input" type="date" th:field="*{issueDate}" id="issueDate"/>
                         </div>
                     </div>
 
                     <div class="field">
-                        <label class="label" for="reportBy">Report By:</label>
+                        <label class="label" for="reportBy">Owner:</label>
                         <div class="control">
                             <div class="select">
                                 <select th:field="*{reportBy}" id="reportBy">
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="field">
-                        <label class="label" for="issueStatus">Issue Status:</label>
+                        <label class="label" for="issueStatus">Status:</label>
                         <div class="control">
                             <div class="select">
                                 <select th:field="*{issueStatus}" id="issueStatus">

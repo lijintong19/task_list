@@ -27,28 +27,29 @@ public class ScheduledTasks {
         List<IssueRecordTable> data = issueRecordService.getListByStatus();
         StringBuilder emailBody = new StringBuilder();
         emailBody.append("Hi All,\n\n");
-        emailBody.append("Below is the daily issue report for today:\n\n");
+        emailBody.append("Below is the daily tasks report:\n\n");
 
         if (!data.isEmpty()) {
-            emailBody.append("On going issues:\n");
+            emailBody.append("On going Tasks:\n");
             for (IssueRecordTable record : data) {
                 if ("On going".equals(record.getIssueStatus())) {
-                    emailBody.append("-ID: ").append(record.getId()).append(" -issueDescription: ")
-                            .append(record.getIssueDescription()).append("\n");
+                    emailBody.append(" -Task Description: ")
+                            .append(record.getIssueDescription())
+                            .append(" -Owner: ").append(record.getReportBy()).append("\n");
                 } else {
-                    emailBody.append("There is no on going issue.\n");
+                    emailBody.append("There is no on going tasks.\n");
                 }
             }
         } else {
-            emailBody.append("There is no issue record for today.\n");
+            emailBody.append("There is no tasks record for today.\n");
         }
 
-        emailBody.append("\nBest regards,\nAuto");
+        emailBody.append("\nBest regards,\nTask Platform");
         SimpleMailMessage message = new SimpleMailMessage();
         String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com"};
         message.setFrom("reportPlatform@tpcs.com");
         message.setTo(to);
-        message.setSubject("Daily Issue Report");
+        message.setSubject("Daily Tasks Report");
         message.setText(emailBody.toString());
         javaMailSender.send(message);
     }
