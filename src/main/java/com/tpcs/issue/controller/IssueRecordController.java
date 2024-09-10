@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +46,12 @@ public class IssueRecordController {
     @Value("${file.path}")
     private String uploadPath;
 
+    /**
+     * 获取全部列表方法
+     * 
+     * @param model
+     * @return
+     */
     @RequestMapping("/getTasks")
     public String getIssueRecords(Model model) {
         List<IssueRecordTable> issueRecords = issueRecordService.getAll();
@@ -56,19 +60,12 @@ public class IssueRecordController {
         return "records";
     }
 
-    @RequestMapping("/index")
-    public String getIndex() {
-        return "index";
-    }
-
     /**
-     * testBootStrap
+     * 新增方法
+     * 
+     * @param model
+     * @return
      */
-    @RequestMapping("/login")
-    public String testBootStrap() {
-        return "login";
-    }
-
     @RequestMapping("/add")
     public String showAddIssueForm(Model model) {
         // 创建一个新的IssueRecord对象，并将其添加到Model中
@@ -78,7 +75,7 @@ public class IssueRecordController {
     }
 
     /**
-     * 添加方法
+     * 上传文件方法
      * 
      * @param issueRecord
      * @return
@@ -88,6 +85,7 @@ public class IssueRecordController {
             @RequestParam("uploadFiles") MultipartFile[] files) {
         log.info("提交数据对象: {}", issueRecord);
 
+        /** 
         List<String> uploadFilesPath = new ArrayList<>();
         Path rootDirPath = Paths.get(uploadPath);
         for (MultipartFile file : files) {
@@ -105,8 +103,8 @@ public class IssueRecordController {
                     return "error";
                 }
             }
-        }
-        issueRecord.setUploadFilesPath(String.join(",", uploadFilesPath));
+        }*/
+        //issueRecord.setUploadFilesPath(String.join(",", uploadFilesPath));
         issueRecord.setCreateTime(new Date());
         issueRecordService.insert(issueRecord);
 
@@ -180,14 +178,18 @@ public class IssueRecordController {
             @RequestParam(value = "reporter", required = false) String reporter,
             @RequestParam(value = "date", required = false) String date,
             @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "taskType", required = false) String taskType,
             Model model) {
 
-        List<IssueRecordTable> searchIssueRecords = issueRecordService.searchIssueRecords(reporter, date, status);
+        List<IssueRecordTable> searchIssueRecords = issueRecordService.searchIssueRecords(reporter, date, status,taskType);
         log.info("searchIssueRecords" + searchIssueRecords);
         model.addAttribute("issueRecords", searchIssueRecords);
         return "records";
     }
 
+    /**
+     * 下载文件方法
+     */
     @GetMapping("/download")
     public ResponseEntity<Resource> downloadFile(@RequestParam("fileName") String fileName) {
         try {

@@ -37,10 +37,23 @@
                     </div>
 
                     <div class="field">
-                        <label class="label" for="issueDate">Date:</label>
+                        <label class="label" for="issueDate">Due Date:</label>
                         <div class="control">
                             <input class="input" style="width: 150px;" type="date" id="issueDate"
                                 th:field="*{issueDate}" required />
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="priorityType">Priority:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select id="priorityType" th:field="*{priorityType}" style="width: 150px;" required>
+                                    <option value="empty"></option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Urgent">Urgent</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -49,9 +62,25 @@
                         <div class="control">
                             <div class="select">
                                 <select id="issueStatus" th:field="*{issueStatus}" style="width: 150px;" required>
+                                    <option value="empty"></option>
                                     <option value="On going">On going</option>
                                     <option value="completed">Completed</option>
+                                    <option value="Hold">Hold</option>
+                                    <option value="Confirm">Confirm</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="taskType">Task Type:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select id="taskType" th:field="*{taskType}" style="width: 150px;" required>
                                     <option value="empty"></option>
+                                    <option value="Pre-process">Pre-process</option>
+                                    <option value="Post-process">Post-process</option>
+                                    <option value="Metrology">Metrology</option>
                                 </select>
                             </div>
                         </div>

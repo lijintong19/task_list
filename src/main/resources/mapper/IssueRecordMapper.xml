@@ -12,11 +12,13 @@
         <result property="updateTime" column="update_time"/>
         <result property="comment" column="comment"/>
         <result property="uploadFilesPath" column="upload_files_path"/>
+        <result property="taskType" column="task_type"/>
+        <result property="priorityType" column="priority_type"/>
     </resultMap>
 
     <!-- 定义一个查询操作 -->
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM issue_record_table;
+        SELECT * FROM issue_record_table order by CASE WHEN priority_type = 'Urgent' then 0 else 1 end, create_time desc;
     </select>
 
     <select id="selectByStatus" resultMap="BaseResultMap">

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
     <script type="text/javascript">
         function confirmDelete(id) {
-            if (confirm("Are you sure you want to delete this issue record?")) {
+            if (confirm("Are you sure you want to delete this task record?")) {
                 window.location.href = "/api/delete?id=" + id;
             }
         }
@@ -23,7 +23,30 @@
         <form th:action="@{/api/search}" method="get" class="is-pulled-right">
             <div class="field has-addons">
                 <div class="control">
-                    <input class="input" type="text" name="reporter" placeholder="Owner">
+                    <div class="select">
+                        <select name="reporter">
+                            <option value="" disabled selected>Owner...</option>
+                                <option value="陈坚">陈坚</option>
+                                <option value="叶澍清">叶澍清</option>
+                                <option value="恽华明">恽华明</option>
+                                <option value="陈艳">陈艳</option>
+                                <option value="魏丽">魏丽</option>
+                                <option value="钱蓓">钱蓓</option>
+                                <option value="顾小炀">顾小炀</option>
+                                <option value="陆朝辉">陆朝辉</option>
+                                <option value="程铭">程铭</option>
+                                <option value="龙雨">龙雨</option>
+                                <option value="王海龙">王海龙</option>
+                                <option value="冯立">冯立</option>
+                                <option value="徐晓梁">徐晓梁</option>
+                                <option value="陈仕扬">陈仕扬</option>
+                                <option value="陈晗博">陈晗博</option>
+                                <option value="林镇鸿">林镇鸿</option>
+                                <option value="李金铜">李金铜</option>
+                                <option value="侯文迪">侯文迪</option>
+                                <option value="项俊杰">项俊杰</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="control">
                     <input class="input" type="date" name="date" placeholder="Date">
@@ -31,9 +54,21 @@
                 <div class="control">
                     <div class="select">
                         <select name="status">
-                            <option value=""></option>
+                            <option value="" disabled selected>任务状态...</option>
                             <option value="On going">On going</option>
                             <option value="Done">Done</option>
+                            <option value="Hold">Hold</option>
+                            <option value="Confirm">Confirm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <div class="select">
+                        <select name="taskType">
+                            <option value="" disabled selected>任务类型...</option>
+                            <option value="Pre-process">Pre-process</option>
+                            <option value="Post-process">Post-process</option>
+                            <option value="Metrology">Metrology</option>
                         </select>
                     </div>
                 </div>
@@ -49,23 +84,27 @@
                 <button class="button is-success">Add</button>
             </a>
         </div>
-        <table class="table is-fullwidth is-bordered">
+        <table class="table is-fullwidth is-bordered" border="2px">
             <thread>
                 <tr>
-                    <th>Id</th>
+                    <th>Priority</th>
                     <th>Task Description</th>
-                    <th>Date</th>
+                    <th>Due Date</th>
                     <th>Owner</th>
+                    <th>Task Type</th>
                     <th>Status</th>
                     <th>Operation</th>
                 </tr>
                 <tr th:each="issueRecord : ${issueRecords}">
-                    <td th:text="${issueRecord.id}"></td>
+                    <td th:text="${issueRecord.priorityType}" th:classappend="${issueRecord.priorityType} == 'Urgent' ? 'is-danger' : 'is-info'"></td>
                     <td th:text="${issueRecord.issueDescription}"></td>
                     <td th:text="${issueRecord.issueDate}"></td>
                     <td th:text="${issueRecord.reportBy}"></td>
-                    <td class="has-text-centered" th:text="${issueRecord.issueStatus}"
-                        th:classappend="${issueRecord.issueStatus} == 'On going' ? 'is-danger' : 'is-success'"></td>
+                    <td th:text="${issueRecord.taskType}"></td>
+                    <td class="has-text-centered" th:text="${issueRecord.issueStatus}" th:classappend="${#strings.equals(issueRecord.issueStatus, 'On going') ? 'is-info' :  
+                    (#strings.equals(issueRecord.issueStatus, 'Done') ? 'is-success' :  
+                     (#strings.equals(issueRecord.issueStatus, 'Hold') ? 'is-warning' :  
+                      (#strings.equals(issueRecord.issueStatus, 'Confirm') ? 'is-danger' : '')))}"></td>
                     <td class="is-flex is-justify-content-center">
                         <a th:href="@{/api/detail(id=${issueRecord.id})}">
                             <button class="button is-success">Detail</button>

@@ -32,9 +32,36 @@
                     </div>
 
                     <div class="field">
-                        <label class="label" for="issueDate">Date:</label>
+                        <label class="label" for="issueDate">Due Date:</label>
                         <div class="control">
-                            <input class="input" type="date" th:field="*{issueDate}" id="issueDate"/>
+                            <input class="input" type="date" style="width: 105px;" th:field="*{issueDate}" id="issueDate"/>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="priorityType">Priority:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select th:field="*{priorityType}" id="priorityType">
+                                    <option value="empty"></option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Urgent">Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="taskType">Task Type:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select th:field="*{taskType}" id="taskType">
+                                    <option value="empty"></option>
+                                    <option value="Pre-process">Pre-process</option>
+                                    <option value="Post-process">Post-process</option>
+                                    <option value="Metrology">Metrology</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -73,8 +100,11 @@
                         <div class="control">
                             <div class="select">
                                 <select th:field="*{issueStatus}" id="issueStatus">
+                                    <option value="empty"></option>
                                     <option value="Done">Done</option>
                                     <option value="On going">On going</option>
+                                    <option value="Hold">Hold</option>
+                                    <option value="Confirm">Confirm</option>
                                 </select>
                             </div>
                         </div>

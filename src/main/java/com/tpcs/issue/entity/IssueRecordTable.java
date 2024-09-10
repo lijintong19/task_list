@@ -1,7 +1,6 @@
 package com.tpcs.issue.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -24,4 +23,6 @@ public class IssueRecordTable implements Serializable {
     private Date updateTime;
     private String comment;
     private String uploadFilesPath;
+    private String taskType;
+    private String priorityType;
 }

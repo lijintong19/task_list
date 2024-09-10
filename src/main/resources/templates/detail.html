@@ -18,14 +18,20 @@
                     <label class="label">Task Description:</label>
                     <textarea class="textarea" th:text="${issueRecord.issueDescription}" readonly></textarea>
 
-                    <label class="label" style="margin-top: 15px;">Date:</label>
+                    <label class="label" style="margin-top: 15px;">Due Date:</label>
                     <input class="input" type="text" style="width: 105px;" th:value="${issueRecord.issueDate}" readonly />
+
+                    <label class="label" style="margin-top: 15px;">Priority:</label>
+                    <input class="input" type="text" style="width: 75px;" th:value="${issueRecord.priorityType}" readonly />
 
                     <label class="label" style="margin-top: 15px;">Status:</label>
                     <input class="input" type="text" style="width: 95px;" th:value="${issueRecord.issueStatus}" readonly />
 
                     <label class="label" style="margin-top: 15px;">Owner:</label>
                     <input class="input" type="text" style="width: 75px;" th:value="${issueRecord.reportBy}" readonly />
+
+                    <label class="label" style="margin-top: 15px;">Task Type:</label>
+                    <input class="input" type="text" style="width: 110px;" th:value="${issueRecord.taskType}" readonly />
                 </div>
 
                 <!-- Display Files -->

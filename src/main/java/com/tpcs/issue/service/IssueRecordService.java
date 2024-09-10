@@ -85,17 +85,20 @@ public class IssueRecordService {
      * @param status
      * @return
      */
-    public List<IssueRecordTable> searchIssueRecords(String reporter, String date, String status) {
+    public List<IssueRecordTable> searchIssueRecords(String reporter, String date, String status, String taskType) {
         QueryWrapper<IssueRecordTable> queryWrapper = new QueryWrapper<>();
 
-        if (reporter != null && !reporter.isEmpty()) {
+        if (reporter != null && !reporter.isEmpty() && !"Owner...".equals(reporter)) {
             queryWrapper.eq("report_by", reporter);
         }
         if (date != null && !date.isEmpty()) {
             queryWrapper.eq("issue_date", date);
         }
-        if (status != null && !status.isEmpty()) {
+        if (status != null && !status.isEmpty() && !"任务状态...".equals(status)) {
             queryWrapper.eq("issue_status", status);
+        }
+        if (taskType != null && !taskType.isEmpty() && !"任务类型...".equals(taskType)) {
+            queryWrapper.eq("task_type", taskType);
         }
 
         return issueRecordMapper.selectList(queryWrapper);
