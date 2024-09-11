@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>High Tech Record List</title>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/issueRecordsView.css}" />-->
+    <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
+    <script type="text/javascript">
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this issue record?")) {
+                window.location.href = "/highTech/delete?id=" + id;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered">High Tech Records</h1>
+
+        <!-- Search Form -->
+        <form th:action="@{/highTech/search}" method="get" class="is-pulled-right">
+            <div class="field has-addons">
+                <div class="control">
+                    <input class="input" type="text" name="customer" placeholder="customer">
+                </div>
+                <div class="control">
+                    <input class="input" type="text" name="device" placeholder="device">
+                </div>
+                <div class="control">
+                    <input class="input" type="text" name="orderNum" placeholder="orderNum">
+                </div>
+                <div class="control">
+                    <input class="input" type="text" name="layer" placeholder="layer">
+                </div>
+                <div class="control">
+                    <input class="input" type="text" name="opr" placeholder="opr">
+                </div>
+                <div class="control">
+                    <button type="submit" class="button is-info">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Add Button -->
+        <div class="buttons">
+            <a th:href="@{/highTech/add}">
+                <button class="button is-success">Add</button>
+            </a>
+        </div>
+        <table class="table is-fullwidth is-bordered" border="2px">
+            <thead>
+                <tr>
+                    <th style="text-align: center;" >Customer</th>
+                    <th style="text-align: center;" >Device</th>
+                    <th style="text-align: center;" >Order</th>
+                    <th style="text-align: center;" >Layer</th>
+                    <th style="text-align: center;" >Opr</th>
+                    <th style="text-align: center;" >CreateTime</th>
+                    <th style="text-align: center;" >Operation</th>
+                </tr>
+                <tr th:each="highTechRecords : ${highTechRecords}">
+                    <td style="text-align: center;" th:text="${highTechRecords.customer}"></td>
+                    <td style="text-align: center;" th:text="${highTechRecords.device}"></td>
+                    <td style="text-align: center;" th:text="${highTechRecords.orderNum}"></td>
+                    <td style="text-align: center;" th:text="${highTechRecords.layer}"></td>
+                    <td style="text-align: center;" th:text="${highTechRecords.opr}"></td>
+                    <td style="text-align: center;" th:text="${#dates.format(highTechRecords.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td class="is-flex is-justify-content-center">
+                        <a th:href="@{/highTech/detail(id=${highTechRecords.id})}">
+                            <button class="button is-success">Detail</button>
+                        </a>
+                        <a th:href="@{/highTech/edit(id=${highTechRecords.id})}">
+                            <button class="button is-link" style="margin-left: 10px; margin-right: 10px;">Edit</button>
+                        </a>
+                        <a th:onclick="'confirmDelete(' + ${highTechRecords.id} + ')'">
+                            <button class="button is-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpcs.issue.mapper.HighTechnologyRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.tpcs.issue.entity.HighTechnologyRecordTable">
+        <result property="id" column="id"/>
+        <result property="customer" column="customer"/>
+        <result property="device" column="device"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="layer" column="layer"/>
+        <result property="jobdeckCheckTime" column="jobdeck_check_time"/>
+        <result property="imaskRt" column="imask_rt"/>
+        <result property="specialSizing" column="special_sizing"/>
+        <result property="mpc" column="mpc"/>
+        <result property="xppa" column="xppa"/>
+        <result property="graphicsCheck" column="graphics_check"/>
+        <result property="cdCheck" column="cd_check"/>
+        <result property="ddCheck" column="dd_check"/>
+        <result property="mfCheck" column="mf_check"/>
+        <result property="comments" column="comments"/>
+        <result property="opr" column="opr"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 查询全部记录 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM high_technology_record_table order by create_time desc;
+    </select> 
+
+</mapper>

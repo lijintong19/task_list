@@ -46,6 +46,10 @@ public class IssueRecordController {
     @Value("${file.path}")
     private String uploadPath;
 
+    @RequestMapping("/getIndex")
+    public String testView() {
+        return "index";
+    }
     /**
      * 获取全部列表方法
      * 
@@ -85,7 +89,7 @@ public class IssueRecordController {
             @RequestParam("uploadFiles") MultipartFile[] files) {
         log.info("提交数据对象: {}", issueRecord);
 
-        /** 
+         
         List<String> uploadFilesPath = new ArrayList<>();
         Path rootDirPath = Paths.get(uploadPath);
         for (MultipartFile file : files) {
@@ -103,8 +107,8 @@ public class IssueRecordController {
                     return "error";
                 }
             }
-        }*/
-        //issueRecord.setUploadFilesPath(String.join(",", uploadFilesPath));
+        }
+        issueRecord.setUploadFilesPath(String.join(",", uploadFilesPath));
         issueRecord.setCreateTime(new Date());
         issueRecordService.insert(issueRecord);
 

@@ -1,10 +1,170 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Thymeleaf Example</title>
+    <title>Add Task</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-6.6.0-web/css/all.min.css}" />
 </head>
+
 <body>
-    <h1>Default Title</h1>
+    <div class="container">
+        <section class="section">
+            <h1 class="title">详情表单</h1>
+            <form th:action="@{/highTech/addHighTech}" method="post" th:object="${highTechRecords}"
+                enctype="multipart/form-data">
+                <div class="columns is-multiline">
+                    <div class="column is-one-quarter">
+                        <div class="field">
+                            <label class="label">Customer:</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="输入客户名称" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Device:</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="输入设备型号">
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Order:</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="输入订单号">
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Layer:</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="输入层级信息">
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">目录更新时间 Jobdeck版本检查:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value="empty"></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">RT In Imask:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">special Sizing(CXMT,SHLMC):</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">MPC(CXMT,SHLMC):</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">XPPA:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Graphics check(MDS TITLE, overlap):</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">CD SEM/DBM:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">2DD/3DD:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">MF3:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select style="width: 294px;" required>
+                                    <option value=""></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Opr:</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="输入操作者">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Comments:</label>
+                    <div class="control">
+                        <textarea class="textarea" required></textarea>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
 </body>
+
 </html>

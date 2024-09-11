@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add HighTechRecords</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-6.6.0-web/css/all.min.css}" />
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">Add High Tech Records</h1>
+            <div class="box">
+                <form th:action="@{/highTech/addHighTech}" method="post" th:object="${highTechRecords}"
+                    enctype="multipart/form-data">
+                    <div class="columns is-multiline">
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="customer">Customer:</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="customer" th:field="*{customer}" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="device">Device:</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="device" th:field="*{device}" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="orderNum">Order:</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="orderNum" th:field="*{orderNum}" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="layer">Layer:</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="layer" th:field="*{layer}" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="jobdeckCheckTime">Jobdeck版本检查:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="jobdeckCheckTime" style="width: 294px;"
+                                            th:field="*{jobdeckCheckTime}" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="imaskRt">RT in Imask:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="imaskRt" th:field="*{imaskRt}" style="width: 294px;" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="specialSizing">Special Sizing(CXMT, SHLMC):</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="specialSizing" th:field="*{specialSizing}" style="width: 294px;"
+                                            required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="mpc">MPC(CXMT, SHLMC):</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="mpc" th:field="*{mpc}" style="width: 294px;" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="xppa">Xppa:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="xppa" th:field="*{xppa}" style="width: 294px;" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="graphicsCheck">Graphics Check(MDS TITLE, overlap):</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="graphicsCheck" th:field="*{graphicsCheck}" style="width: 294px;"
+                                            required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="cdCheck">CD SEM/DBM:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="cdCheck" th:field="*{cdCheck}" style="width: 294px;" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="ddCheck">2DD/3DD:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="ddCheck" th:field="*{ddCheck}" style="width: 294px;" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="mfCheck">MF3:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="mfCheck" th:field="*{mfCheck}" style="width: 294px;" required>
+                                            <option value="empty"></option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-one-quarter">
+                            <div class="field">
+                                <label class="label" for="opr">Opr:</label>
+                                <div class="select">
+                                    <select th:field="*{opr}" id="opr" style="width: 294px;">
+                                        <option value=""> </option>
+                                        <option value="陈坚">陈坚</option>
+                                        <option value="叶澍清">叶澍清</option>
+                                        <option value="恽华明">恽华明</option>
+                                        <option value="陈艳">陈艳</option>
+                                        <option value="魏丽">魏丽</option>
+                                        <option value="钱蓓">钱蓓</option>
+                                        <option value="顾小炀">顾小炀</option>
+                                        <option value="陆朝辉">陆朝辉</option>
+                                        <option value="程铭">程铭</option>
+                                        <option value="龙雨">龙雨</option>
+                                        <option value="王海龙">王海龙</option>
+                                        <option value="冯立">冯立</option>
+                                        <option value="徐晓梁">徐晓梁</option>
+                                        <option value="陈仕扬">陈仕扬</option>
+                                        <option value="陈晗博">陈晗博</option>
+                                        <option value="林镇鸿">林镇鸿</option>
+                                        <option value="李金铜">李金铜</option>
+                                        <option value="侯文迪">侯文迪</option>
+                                        <option value="项俊杰">项俊杰</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="comments">Comments:</label>
+                        <div class="control">
+                            <input class="textarea" type="text" th:field="*{comments}"
+                                id="comments" />
+                        </div>
+                    </div>
+                    <div class="field" style="margin-top: 30px;">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Add</button>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+        </div>
+    </section>
+</body>
+
+</html>

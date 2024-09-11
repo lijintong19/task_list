@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>highTechRecords Details</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bulma/css/bulma.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-6.6.0-web/css/all.min.css}" />
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">High Tech Records Details</h1>
+            <div class="box">
+                <div class="columns is-multiline">
+                    <div class="column is-one-quarter">
+                        <label class="label">Customer:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.customer}" readonly />
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Device:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.device}" readonly />
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Order:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.orderNum}" readonly />
+                    </div>
+                    <div class="column is-one-quarter">
+                        <label class="label">Layer:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.layer}" readonly />
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label">Jobdeck版本检查:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.jobdeckCheckTime}" readonly />
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="imaskRt">RT in Imask:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.imaskRt}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label">Special Sizing(CXMT, SHLMC):</label>
+                        <input class="input" type="text" th:value="${highTechRecords.specialSizing}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="mpc">MPC(CXMT, SHLMC):</label>
+                        <input class="input" type="text" th:value="${highTechRecords.mpc}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="xppa">Xppa:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.xppa}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="graphicsCheck">Graphics Check(MDS TITLE, overlap):</label>
+                        <input class="input" type="text" th:value="${highTechRecords.graphicsCheck}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="cdCheck">CD SEM/DBM:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.cdCheck}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="ddCheck">2DD/3DD:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.ddCheck}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="mfCheck">MF3:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.mfCheck}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="opr">Opr:</label>
+                        <input class="input" type="text" th:value="${highTechRecords.opr}" readonly/>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="createTime">create time:</label>
+                        <p th:text="${#dates.format(highTechRecords.createTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                    </div>
+
+                    <div class="column is-one-quarter">
+                        <label class="label" for="createTime">update time:</label>
+                        <p th:text="${#dates.format(highTechRecords.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="comments">Comments:</label>
+                    <div class="control">
+                        <input class="textarea" type="text" th:value="${highTechRecords.comments}" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+
+</html>
