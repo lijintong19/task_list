@@ -101,6 +101,7 @@ public class IssueRecordService {
             queryWrapper.eq("task_type", taskType);
         }
 
+        queryWrapper.orderByDesc("create_time");
         return issueRecordMapper.selectList(queryWrapper);
     }
 }

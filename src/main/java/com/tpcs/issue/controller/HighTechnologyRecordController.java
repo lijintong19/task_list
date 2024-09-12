@@ -1,6 +1,5 @@
 package com.tpcs.issue.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tpcs.issue.entity.HighTechnologyRecordTable;
 import com.tpcs.issue.service.HighTechnologyRecordService;
+import com.tpcs.issue.utils.DateUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,7 +62,7 @@ public class HighTechnologyRecordController {
     @PostMapping("/addHighTech")
     public String addIssue(@ModelAttribute("highTechRecords") HighTechnologyRecordTable highTech) {
         log.info("提交数据对象: {}", highTech);
-        highTech.setCreateTime(new Date());
+        highTech.setCreateTime(DateUtils.getDatePlus12Hours());
         highTechnologyRecordService.insert(highTech);
         return "redirect:/highTech/getRecords";
     }
@@ -119,7 +119,7 @@ public class HighTechnologyRecordController {
     @PostMapping("/update")
     public String updateIssueRecord(@ModelAttribute("highTechRecords") HighTechnologyRecordTable highTechTable,
             RedirectAttributes redirectAttributes) {
-        highTechTable.setUpdateTime(new Date());
+        highTechTable.setUpdateTime(DateUtils.getDatePlus12Hours());
         int update = highTechnologyRecordService.update(highTechTable);
         System.out.println("update result:" + update);
         redirectAttributes.addFlashAttribute("message", "High Tech record updated successfully!");
@@ -138,9 +138,10 @@ public class HighTechnologyRecordController {
             @RequestParam(value = "opr", required = false) String opr,
             Model model) {
 
-        List<HighTechnologyRecordTable> searchIssueRecords = highTechnologyRecordService.searchIssueRecords(customer, device, orderNum,layer,opr);
+        List<HighTechnologyRecordTable> searchIssueRecords = highTechnologyRecordService.searchIssueRecords(customer,
+                device, orderNum, layer, opr);
         log.info("searchIssueRecords" + searchIssueRecords);
         model.addAttribute("highTechRecords", searchIssueRecords);
         return "highTech";
-    }    
+    }
 }

@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tpcs.issue.entity.IssueRecordTable;
 import com.tpcs.issue.service.IssueRecordService;
+import com.tpcs.issue.utils.DateUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -109,7 +109,7 @@ public class IssueRecordController {
             }
         }
         issueRecord.setUploadFilesPath(String.join(",", uploadFilesPath));
-        issueRecord.setCreateTime(new Date());
+        issueRecord.setCreateTime(DateUtils.getDatePlus12Hours());
         issueRecordService.insert(issueRecord);
 
         return "redirect:/api/getTasks";
@@ -153,7 +153,7 @@ public class IssueRecordController {
     @PostMapping("/update")
     public String updateIssueRecord(@ModelAttribute("issueRecords") IssueRecordTable issueRecord,
             RedirectAttributes redirectAttributes) {
-        issueRecord.setUpdateTime(new Date());
+        issueRecord.setUpdateTime(DateUtils.getDatePlus12Hours());
         int update = issueRecordService.update(issueRecord);
         System.out.println("update result:" + update);
         redirectAttributes.addFlashAttribute("message", "Issue record updated successfully!");

@@ -92,6 +92,7 @@ public class HighTechnologyRecordService {
             queryWrapper.eq("opr", opr);
         }
 
+        queryWrapper.orderByDesc("create_time");
         return highTechnologyRecordMapper.selectList(queryWrapper);
     }    
     
