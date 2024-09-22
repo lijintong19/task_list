@@ -18,7 +18,7 @@
 
     <!-- 定义一个查询操作 -->
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM issue_record_table order by CASE WHEN priority_type = 'Urgent' then 0 else 1 end, create_time desc;
+        SELECT * FROM issue_record_table where issue_status != 'Done' order by CASE WHEN priority_type = 'Urgent' then 0 else 1 end, create_time desc;
     </select>
 
     <select id="selectByStatus" resultMap="BaseResultMap">

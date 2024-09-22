@@ -22,7 +22,7 @@ public class ScheduledTasks {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Scheduled(cron = "0 0 */4 * * ?")
+    @Scheduled(cron = "0 0 8,17 * * ?")
     public void sendEmail() {
         List<IssueRecordTable> data = issueRecordService.getListByStatus();
         StringBuilder emailBody = new StringBuilder();
@@ -46,7 +46,7 @@ public class ScheduledTasks {
 
         emailBody.append("\nBest regards,\nTask Platform");
         SimpleMailMessage message = new SimpleMailMessage();
-        String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com"};
+        String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com","linch@photomask.com"};
         message.setFrom("reportPlatform@tpcs.com");
         message.setTo(to);
         message.setSubject("Daily Tasks Report");

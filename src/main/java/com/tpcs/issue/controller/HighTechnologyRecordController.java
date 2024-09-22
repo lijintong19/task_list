@@ -49,6 +49,16 @@ public class HighTechnologyRecordController {
     public String showAddIssueForm(Model model) {
         // 创建一个新的IssueRecord对象，并将其添加到Model中
         HighTechnologyRecordTable highTechnologyRecordTable = new HighTechnologyRecordTable();
+        if (highTechnologyRecordTable.getJobdeckCheckTime().isEmpty()
+                || highTechnologyRecordTable.getMfCheck().isEmpty() || highTechnologyRecordTable.getCdCheck().isEmpty()
+                || highTechnologyRecordTable.getMpc().isEmpty()
+                || highTechnologyRecordTable.getGraphicsCheck().isEmpty() || highTechnologyRecordTable.getDdCheck().isEmpty()
+                || highTechnologyRecordTable.getImaskRt().isEmpty()
+                || highTechnologyRecordTable.getSpecialSizing().isEmpty() || highTechnologyRecordTable.getXppa().isEmpty()) {
+            highTechnologyRecordTable.setRemind("N");
+        } else {
+            highTechnologyRecordTable.setRemind("Y");
+        }
         model.addAttribute("highTechRecords", highTechnologyRecordTable);
         return "highTechAdd";
     }
@@ -119,6 +129,16 @@ public class HighTechnologyRecordController {
     @PostMapping("/update")
     public String updateIssueRecord(@ModelAttribute("highTechRecords") HighTechnologyRecordTable highTechTable,
             RedirectAttributes redirectAttributes) {
+        if (highTechTable.getJobdeckCheckTime().isEmpty()
+                || highTechTable.getMfCheck().isEmpty() || highTechTable.getCdCheck().isEmpty()
+                || highTechTable.getMpc().isEmpty()
+                || highTechTable.getGraphicsCheck().isEmpty() || highTechTable.getDdCheck().isEmpty()
+                || highTechTable.getImaskRt().isEmpty()
+                || highTechTable.getSpecialSizing().isEmpty() || highTechTable.getXppa().isEmpty()) {
+            highTechTable.setRemind("N");
+        } else {
+            highTechTable.setRemind("Y");
+        }
         highTechTable.setUpdateTime(DateUtils.getDatePlus12Hours());
         int update = highTechnologyRecordService.update(highTechTable);
         System.out.println("update result:" + update);

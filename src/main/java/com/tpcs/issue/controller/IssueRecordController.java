@@ -65,6 +65,16 @@ public class IssueRecordController {
     }
 
     /**
+     * 返回方法
+     * 
+     * @return
+     */
+    @RequestMapping("/return")
+    public String returnHome(){
+        return "redirect:/api/getTasks";
+    }
+
+    /**
      * 新增方法
      * 
      * @param model
@@ -89,7 +99,6 @@ public class IssueRecordController {
             @RequestParam("uploadFiles") MultipartFile[] files) {
         log.info("提交数据对象: {}", issueRecord);
 
-         
         List<String> uploadFilesPath = new ArrayList<>();
         Path rootDirPath = Paths.get(uploadPath);
         for (MultipartFile file : files) {
@@ -183,9 +192,10 @@ public class IssueRecordController {
             @RequestParam(value = "date", required = false) String date,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "taskType", required = false) String taskType,
+            @RequestParam(value = "description", required = false) String description,
             Model model) {
 
-        List<IssueRecordTable> searchIssueRecords = issueRecordService.searchIssueRecords(reporter, date, status,taskType);
+        List<IssueRecordTable> searchIssueRecords = issueRecordService.searchIssueRecords(reporter, date, status,taskType,description);
         log.info("searchIssueRecords" + searchIssueRecords);
         model.addAttribute("issueRecords", searchIssueRecords);
         return "records";

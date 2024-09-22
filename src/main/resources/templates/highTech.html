@@ -52,21 +52,24 @@
         <table class="table is-fullwidth is-bordered" border="2px">
             <thead>
                 <tr>
-                    <th style="text-align: center;" >Customer</th>
-                    <th style="text-align: center;" >Device</th>
-                    <th style="text-align: center;" >Order</th>
-                    <th style="text-align: center;" >Layer</th>
-                    <th style="text-align: center;" >Opr</th>
-                    <th style="text-align: center;" >CreateTime</th>
-                    <th style="text-align: center;" >Operation</th>
+                    <th style="text-align: center;">R</th>
+                    <th style="text-align: center;">Customer</th>
+                    <th style="text-align: center;">Device</th>
+                    <th style="text-align: center;">Order</th>
+                    <th style="text-align: center;">Layer</th>
+                    <th style="text-align: center;">Opr</th>
+                    <th style="text-align: center;">CreateTime</th>
+                    <th style="text-align: center;">Operation</th>
                 </tr>
                 <tr th:each="highTechRecords : ${highTechRecords}">
+                    <td style="text-align: center;" th:text="${highTechRecords.remind}" th:classappend="${#strings.equals(highTechRecords.remind, 'N') ? 'is-danger': 'is-success'}"></td>
                     <td style="text-align: center;" th:text="${highTechRecords.customer}"></td>
                     <td style="text-align: center;" th:text="${highTechRecords.device}"></td>
                     <td style="text-align: center;" th:text="${highTechRecords.orderNum}"></td>
                     <td style="text-align: center;" th:text="${highTechRecords.layer}"></td>
                     <td style="text-align: center;" th:text="${highTechRecords.opr}"></td>
-                    <td style="text-align: center;" th:text="${#dates.format(highTechRecords.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td style="text-align: center;"
+                        th:text="${#dates.format(highTechRecords.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
                     <td class="is-flex is-justify-content-center">
                         <a th:href="@{/highTech/detail(id=${highTechRecords.id})}">
                             <button class="button is-success">Detail</button>

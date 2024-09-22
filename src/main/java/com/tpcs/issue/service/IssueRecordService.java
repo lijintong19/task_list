@@ -85,9 +85,12 @@ public class IssueRecordService {
      * @param status
      * @return
      */
-    public List<IssueRecordTable> searchIssueRecords(String reporter, String date, String status, String taskType) {
+    public List<IssueRecordTable> searchIssueRecords(String reporter, String date, String status, String taskType,String description) {
         QueryWrapper<IssueRecordTable> queryWrapper = new QueryWrapper<>();
 
+        if (description != null && !description.isEmpty()) {
+            queryWrapper.like("issue_description", description);
+        }
         if (reporter != null && !reporter.isEmpty() && !"Owner...".equals(reporter)) {
             queryWrapper.eq("report_by", reporter);
         }

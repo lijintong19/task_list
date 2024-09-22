@@ -21,6 +21,7 @@
         <result property="opr" column="opr"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="remind" column="remind"/>
     </resultMap>
 
     <!-- 查询全部记录 -->

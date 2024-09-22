@@ -32,4 +32,5 @@ public class HighTechnologyRecordTable implements Serializable {
     private String opr;
     private Date createTime;
     private Date updateTime;
+    private String remind;
 }
