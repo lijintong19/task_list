@@ -49,16 +49,6 @@ public class HighTechnologyRecordController {
     public String showAddIssueForm(Model model) {
         // 创建一个新的IssueRecord对象，并将其添加到Model中
         HighTechnologyRecordTable highTechnologyRecordTable = new HighTechnologyRecordTable();
-        if (highTechnologyRecordTable.getJobdeckCheckTime().isEmpty()
-                || highTechnologyRecordTable.getMfCheck().isEmpty() || highTechnologyRecordTable.getCdCheck().isEmpty()
-                || highTechnologyRecordTable.getMpc().isEmpty()
-                || highTechnologyRecordTable.getGraphicsCheck().isEmpty() || highTechnologyRecordTable.getDdCheck().isEmpty()
-                || highTechnologyRecordTable.getImaskRt().isEmpty()
-                || highTechnologyRecordTable.getSpecialSizing().isEmpty() || highTechnologyRecordTable.getXppa().isEmpty()) {
-            highTechnologyRecordTable.setRemind("N");
-        } else {
-            highTechnologyRecordTable.setRemind("Y");
-        }
         model.addAttribute("highTechRecords", highTechnologyRecordTable);
         return "highTechAdd";
     }
@@ -72,6 +62,18 @@ public class HighTechnologyRecordController {
     @PostMapping("/addHighTech")
     public String addIssue(@ModelAttribute("highTechRecords") HighTechnologyRecordTable highTech) {
         log.info("提交数据对象: {}", highTech);
+        if (highTech.getJobdeckCheckTime().isEmpty()
+                || highTech.getMfCheck().isEmpty() || highTech.getCdCheck().isEmpty()
+                || highTech.getMpc().isEmpty()
+                || highTech.getGraphicsCheck().isEmpty()
+                || highTech.getDdCheck().isEmpty()
+                || highTech.getImaskRt().isEmpty()
+                || highTech.getSpecialSizing().isEmpty()
+                || highTech.getXppa().isEmpty()) {
+                    highTech.setRemind("N");
+        } else {
+            highTech.setRemind("Y");
+        }
         highTech.setCreateTime(DateUtils.getDatePlus12Hours());
         highTechnologyRecordService.insert(highTech);
         return "redirect:/highTech/getRecords";

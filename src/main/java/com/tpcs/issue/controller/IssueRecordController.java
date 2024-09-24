@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +100,14 @@ public class IssueRecordController {
     public String addIssue(@ModelAttribute("issueRecords") IssueRecordTable issueRecord,
             @RequestParam("uploadFiles") MultipartFile[] files) {
         log.info("提交数据对象: {}", issueRecord);
+
+        if (issueRecord.getIssueDate() == null || issueRecord.getIssueDate().isEmpty()) {
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String dateString = currentDate.format(formatter);
+            log.info("当前日期:" + dateString);
+            issueRecord.setIssueDate(dateString);
+        }       
 
         List<String> uploadFilesPath = new ArrayList<>();
         Path rootDirPath = Paths.get(uploadPath);
