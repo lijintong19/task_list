@@ -22,8 +22,17 @@ public class ScheduledTasks {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Scheduled(cron = "0 0 8,17 * * ?")
-    public void sendEmail() {
+    @Scheduled(cron = "0 0 8 * * ?")
+    public void sendEmailMorning() {
+        sendEmail();
+    }
+
+    @Scheduled(cron = "0 0 17 * * ?")
+    public void sendEmailAfternoon() {
+        sendEmail();
+    }
+
+    private void sendEmail() {
         List<IssueRecordTable> data = issueRecordService.getListByStatus();
         StringBuilder emailBody = new StringBuilder();
         emailBody.append("Hi All,\n\n");
@@ -34,7 +43,7 @@ public class ScheduledTasks {
             for (IssueRecordTable record : data) {
                 if ("On going".equals(record.getIssueStatus())) {
                     emailBody.append(" -Task Description: ")
-                            .append(record.getIssueDescription())
+                            .append(record.getIssueDescription().trim())
                             .append(" -Owner: ").append(record.getReportBy()).append("\n");
                 } else {
                     emailBody.append("There is no on going tasks.\n");
@@ -46,7 +55,7 @@ public class ScheduledTasks {
 
         emailBody.append("\nBest regards,\nTask Platform");
         SimpleMailMessage message = new SimpleMailMessage();
-        String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com","linch@photomask.com"};
+        String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com","linzh@photomask.com"};
         message.setFrom("reportPlatform@tpcs.com");
         message.setTo(to);
         message.setSubject("Daily Tasks Report");
