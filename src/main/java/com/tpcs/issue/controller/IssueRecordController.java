@@ -89,6 +89,10 @@ public class IssueRecordController {
     public String showAddIssueForm(Model model) {
         // 创建一个新的IssueRecord对象，并将其添加到Model中
         IssueRecordTable issueRecord = new IssueRecordTable();
+        Date datePlus12Hours = DateUtils.getDatePlus12Hours();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = sdf.format(datePlus12Hours);
+        issueRecord.setIssueDate(dateStr);
         model.addAttribute("issueRecords", issueRecord);
         return "add";
     }
