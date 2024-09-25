@@ -5,11 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.javassist.Loader.Simple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -102,9 +105,9 @@ public class IssueRecordController {
         log.info("提交数据对象: {}", issueRecord);
 
         if (issueRecord.getIssueDate() == null || issueRecord.getIssueDate().isEmpty()) {
-            LocalDate currentDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String dateString = currentDate.format(formatter);
+            Date datePlus12Hours = DateUtils.getDatePlus12Hours();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = formatter.format(datePlus12Hours);
             log.info("当前日期:" + dateString);
             issueRecord.setIssueDate(dateString);
         }       

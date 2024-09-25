@@ -22,12 +22,18 @@ public class ScheduledTasks {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Scheduled(cron = "0 0 8 * * ?")
+    /**
+     * 服务器是时间和现实时间相差12小时
+     */
+    @Scheduled(cron = "0 0 5 * * ?")
     public void sendEmailMorning() {
         sendEmail();
     }
 
-    @Scheduled(cron = "0 0 17 * * ?")
+    /**
+     * 服务器是时间和现实时间相差12小时
+     */
+    @Scheduled(cron = "0 0 21 * * ?")
     public void sendEmailAfternoon() {
         sendEmail();
     }
@@ -55,7 +61,8 @@ public class ScheduledTasks {
 
         emailBody.append("\nBest regards,\nTask Platform");
         SimpleMailMessage message = new SimpleMailMessage();
-        String[] to = {"chensy@photomask.com","lijt@photomask.com","longy@photomask.com","ChenC@photomask.com","linzh@photomask.com"};
+        String[] to = { "chensy@photomask.com", "lijt@photomask.com", "longy@photomask.com", "ChenC@photomask.com",
+                "linzh@photomask.com" };
         message.setFrom("reportPlatform@tpcs.com");
         message.setTo(to);
         message.setSubject("Daily Tasks Report");

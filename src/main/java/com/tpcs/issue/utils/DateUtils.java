@@ -6,7 +6,7 @@ import java.util.Date;
 public class DateUtils {
 
     /**
-     * 获取新的时间点，当前时间点加8小时
+     * 获取新的时间点，当前时间点加12小时,部署服务器的时间和现实时间相差12小时
      * 
      * @return
      */
